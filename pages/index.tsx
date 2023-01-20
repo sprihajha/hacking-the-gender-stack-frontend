@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Inter } from "@next/font/google";
 import styles from "@/styles/Home.module.css";
 import ScrollPage from "pages/parallaxScroll";
+import Header from "@/components/header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,6 +16,7 @@ export default function Home() {
         <link rel="icon" href="/logo.svg" />
       </Head>
       <main className={styles.main}>
+        <Header />
         <ScrollPage />
       </main>
     </>

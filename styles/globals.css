@@ -184,3 +184,9 @@ img {
   background: var(--accent);
   /* bottom: 100px; */
 }
+
+@layer components {
+  .heroButton {
+    @apply px-6 py-2 uppercase text-sm tracking-widest transition-all hover:text-[#ffffff]/40;
+  }
+}
