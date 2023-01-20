@@ -32,25 +32,60 @@ const rows = [
   createData(0.1, 305, 3.7, 67, 4.3),
   createData(0.1, 356, 16.0, 49, 3.9),
 ];
+
 const FilterLibrary = () => {
   const [value, setValue] = React.useState<number[]>([20, 37]);
 
   const handleChange = (event: Event, newValue: number | number[]) => {
     setValue(newValue as number[]);
   };
+
   return (
     <>
-      <h6>Based on Lipinski&apos;s properties</h6>
-      <Box sx={{ width: 300 }}>
-        <Slider
-          getAriaLabel={() => "Temperature range"}
-          value={value}
-          onChange={handleChange}
-          valueLabelDisplay="auto"
-          getAriaValueText={valuetext}
-          color="secondary"
-        />
-      </Box>
+      <div className="flex flex-row py-5">
+        <h3 className="font-semibold items-center justify-center">Filters</h3>
+        <Box sx={{ width: 350 }} className="px-5">
+          <label>LogP</label>
+          <Slider
+            getAriaLabel={() => "Temperature range"}
+            value={value}
+            onChange={handleChange}
+            valueLabelDisplay="auto"
+            getAriaValueText={valuetext}
+            color="secondary"
+          />
+        </Box>
+        <Box sx={{ width: 350 }} className="px-5">
+          <label>LogP</label>
+          <Slider
+            getAriaLabel={() => "Temperature range"}
+            value={value}
+            onChange={handleChange}
+            valueLabelDisplay="auto"
+            getAriaValueText={valuetext}
+            color="secondary"
+          />
+        </Box>
+        <Box sx={{ width: 350 }} className="px-5">
+          <label>LogP</label>
+          <Slider
+            getAriaLabel={() => "Temperature range"}
+            value={value}
+            onChange={handleChange}
+            valueLabelDisplay="auto"
+            getAriaValueText={valuetext}
+            color="secondary"
+          />
+        </Box>
+        <button
+          type="button"
+          className="bg-indigo-500 rounded-lg px-5 h-10"
+          disabled
+        >
+          Apply
+        </button>
+      </div>
+
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
@@ -80,6 +115,7 @@ const FilterLibrary = () => {
           </TableBody>
         </Table>
       </TableContainer>
+      <h6 className="pt-10">* Based on Lipinski&apos;s properties</h6>
     </>
   );
 };
