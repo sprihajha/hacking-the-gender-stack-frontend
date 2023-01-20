@@ -39,9 +39,11 @@ function FindImage({ id, index }: { id: ComponentsIds; index: number }) {
   ];
 
   return (
-    <section>
+    <section className="w-full">
       <motion.h2 className="px-10">{`${pageHeaders[index]}`}</motion.h2>
-      <div ref={ref}>{components[id]}</div>
+      <div ref={ref} className="w-full items-center">
+        {components[id]}
+      </div>
     </section>
   );
 }
