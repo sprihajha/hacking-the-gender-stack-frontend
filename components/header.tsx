@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Header = () => {
   return (
-    <header className="sticky top-0 p-5 flex items-center justify-center z-20">
+    <header className="top-0 p-5 flex items-center justify-center z-20">
       <motion.div
         className="flex flex-row items-center"
         initial={{
@@ -20,7 +20,7 @@ const Header = () => {
           duration: 0.5,
         }}
       >
-        <div className="pt-5">
+        <div>
           <Link href="/homePage">
             <button className="heroButton">Home</button>
           </Link>
