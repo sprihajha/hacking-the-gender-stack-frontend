@@ -42,7 +42,7 @@ const FilterLibrary = () => {
 
   return (
     <>
-      <div className="flex flex-row py-5">
+      <div className="flex flex-row pt-20">
         <h3 className="font-semibold items-center justify-center">Filters</h3>
         <Box sx={{ width: 350 }} className="px-5">
           <label>LogP</label>
@@ -52,7 +52,7 @@ const FilterLibrary = () => {
             onChange={handleChange}
             valueLabelDisplay="auto"
             getAriaValueText={valuetext}
-            color="secondary"
+            color="primary"
           />
         </Box>
         <Box sx={{ width: 350 }} className="px-5">
@@ -63,7 +63,7 @@ const FilterLibrary = () => {
             onChange={handleChange}
             valueLabelDisplay="auto"
             getAriaValueText={valuetext}
-            color="secondary"
+            color="primary"
           />
         </Box>
         <Box sx={{ width: 350 }} className="px-5">
@@ -74,7 +74,7 @@ const FilterLibrary = () => {
             onChange={handleChange}
             valueLabelDisplay="auto"
             getAriaValueText={valuetext}
-            color="secondary"
+            color="primary"
           />
         </Box>
         <button

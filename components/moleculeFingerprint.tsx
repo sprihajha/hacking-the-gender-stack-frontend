@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 
-const MoleculeFingerprint = () => {
+const MoleculeFingerprint = ({ fingerprint }) => {
   return (
     <motion.div
       className="flex flex-row items-center max-w-sm bg-white border border-gray-200 rounded-lg shadow-md"
@@ -20,13 +20,14 @@ const MoleculeFingerprint = () => {
       }}
     >
       <div className="p-5">
+        <p className="text-gray-700 font-semibold">{fingerprint}</p>
         <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
           Search database for for similar molecules based on ECFP4 fingerprints
           and Tanimito similarity.
         </p>
         <a
           href="#"
-          className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
+          className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-sky-500 rounded-lg hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
         >
           Filter candidates
           <svg

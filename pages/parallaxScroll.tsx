@@ -1,4 +1,4 @@
-import { Component, useRef } from "react";
+import { Component, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import {
   motion,
@@ -18,15 +18,22 @@ function useParallax(value: MotionValue<number>, distance: number) {
 }
 
 const components = {
-  search: <SearchMolecule />,
-  fingerprint: <MoleculeFingerprint />,
-  filter: <FilterLibrary />,
-  result: <BestCandidate />,
+  search: (props) => <SearchMolecule {...props} />,
+  fingerprint: (props) => <MoleculeFingerprint {...props} />,
+  filter: (props) => <FilterLibrary {...props} />,
+  result: (props) => <BestCandidate {...props} />,
 };
 
 type ComponentsIds = keyof typeof components;
 
-function FindImage({ id, index }: { id: ComponentsIds; index: number }) {
+function FindImage({
+  id,
+  index,
+  componentProps,
+}: {
+  id: ComponentsIds;
+  index: number;
+}) {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref });
   const y = useParallax(scrollYProgress, 300);
@@ -42,7 +49,7 @@ function FindImage({ id, index }: { id: ComponentsIds; index: number }) {
     <section className="w-full">
       <motion.h2 className="px-10">{`${pageHeaders[index]}`}</motion.h2>
       <div ref={ref} className="w-full items-center">
-        {components[id]}
+        {components[id](componentProps)}
       </div>
     </section>
   );
@@ -50,17 +57,28 @@ function FindImage({ id, index }: { id: ComponentsIds; index: number }) {
 
 export default function ScrollPage() {
   const { scrollYProgress } = useScroll();
+  const [fingerprint, setFingerprint] = useState();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
     restDelta: 0.001,
   });
 
+  useEffect(() => console.log(fingerprint), [fingerprint]);
+
   return (
     <>
       <motion.div className="progress" style={{ scaleX }} />
       {["search", "fingerprint", "filter", "result"].map((page, index) => (
-        <FindImage id={page} index={index} key={index} />
+        <FindImage
+          id={page}
+          index={index}
+          key={index}
+          componentProps={{
+            onFingerPrint: setFingerprint,
+            fingerprint: fingerprint,
+          }}
+        />
       ))}
     </>
   );
