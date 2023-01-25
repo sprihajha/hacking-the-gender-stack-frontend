@@ -1,6 +1,26 @@
 import { motion } from "framer-motion";
+import { useState } from "react";
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  QueryClient,
+  QueryClientProvider,
+} from "@tanstack/react-query";
+import { promises } from "stream";
 
-const SearchMolecule = () => {
+const SearchMolecule = ({ onFingerPrint }) => {
+  const [searchString, setSearchString] = useState();
+  const mutation = useMutation({
+    mutationFn: (searchString) => {
+      return Promise.resolve({ fingerprint: "CCC" });
+    },
+    onSuccess: (data) => {
+      // Invalidate and refetch
+      onFingerPrint(data.fingerprint);
+    },
+  });
+
   return (
     <div className="flex flex-col w-full items-center">
       <p>Find the molecule you are looking for...</p>
@@ -25,14 +45,17 @@ const SearchMolecule = () => {
           </div>
           <input
             type="search"
+            value={searchString}
+            onChange={(e) => e.target.value}
             id="default-search"
             className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
             placeholder="Search Molecules in SMILES format"
             required
           />
           <button
-            type="submit"
-            className="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2"
+            type="button"
+            onClick={mutation.mutate}
+            className="text-white absolute right-2.5 bottom-2.5 bg-sky-500 hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2"
           >
             Search
           </button>
