@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-const MoleculeFingerprint = ({ fingerprint }) => {
+const MoleculeFingerprint = ({ fingerprint }: any) => {
 	return (
 		<motion.div
 			className='flex flex-row items-center max-w-sm bg-white border border-gray-200 rounded-lg shadow-md'

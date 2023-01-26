@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 
-const SearchMolecule = ({ onFingerPrint }) => {
+interface SearchMoleculeProps {
+  onFingerPrint: (fingerprint: string) => void;
+}
+
+const SearchMolecule = ({ onFingerPrint }: SearchMoleculeProps) => {
 	const [searchString, setSearchString] = useState();
 	const mutation = useMutation({
 		mutationFn: (searchString) => {
