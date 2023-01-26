@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 
 interface SearchMoleculeProps {
-  onFingerPrint: (fingerprint: string) => void;
+	onFingerPrint: (fingerprint: string) => void;
 }
 
 const SearchMolecule = ({ onFingerPrint }: SearchMoleculeProps) => {
@@ -22,7 +22,7 @@ const SearchMolecule = ({ onFingerPrint }: SearchMoleculeProps) => {
 			<p>Find the molecule you are looking for...</p>
 			<form className='w-1/2'>
 				<div className='relative'>
-					<div className='items-center absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none'>
+					<div className='absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none'>
 						<svg
 							aria-hidden='true'
 							className='w-5 h-5 text-gray-500 dark:text-gray-400'
@@ -48,7 +48,7 @@ const SearchMolecule = ({ onFingerPrint }: SearchMoleculeProps) => {
 					/>
 					<button
 						type='button'
-						onClick={mutation.mutate}
+						onClick={() => mutation.mutate(searchString)}
 						className='text-white absolute right-2.5 bottom-2.5 bg-sky-500 hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2'>
 						Search
 					</button>
