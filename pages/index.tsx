@@ -1,12 +1,10 @@
 import Head from "next/head";
-import { Inter } from "@next/font/google";
 import styles from "@/styles/Home.module.css";
 import ScrollPage from "pages/parallaxScroll";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-const inter = Inter({ subsets: ["latin"] });
 const queryClient = new QueryClient();
 
 export default function Home() {

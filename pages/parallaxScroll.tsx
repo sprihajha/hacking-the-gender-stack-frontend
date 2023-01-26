@@ -10,6 +10,9 @@ import SearchMolecule from "@/components/searchMolecule";
 import MoleculeFingerprint from "@/components/moleculeFingerprint";
 import FilterLibrary from "@/components/filterLibrary";
 import BestCandidate from "@/components/bestCandidate";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 function useParallax(value: MotionValue<number>, distance: number) {
 	return useTransform(value, [0, 1], [-distance, distance]);
@@ -70,7 +73,7 @@ export default function ScrollPage() {
 	useEffect(() => console.log(fingerprint), [fingerprint]);
 
 	return (
-		<>
+		<QueryClientProvider client={queryClient}>
 			<motion.div className='progress' style={{ scaleX }} />
 			{Object.keys(components).map((page, index) => (
 				<FindImage
@@ -83,6 +86,6 @@ export default function ScrollPage() {
 					}}
 				/>
 			))}
-		</>
+		</QueryClientProvider>
 	);
 }
